@@ -6,16 +6,16 @@ WIDTH = 800
 WIN = pygame.display.set_mode((WIDTH, WIDTH))
 pygame.display.set_caption("A* Path Finding Algorithm")
 
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
+RED = (255, 36, 36)
+GREEN = (51, 225, 0)
 BLUE = (0, 255, 0)
 YELLOW = (255, 255, 0)
 WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-PURPLE = (128, 0, 128)
-ORANGE = (255, 165, 0)
+BLACK = (71, 71, 71)
+PURPLE = (170, 0, 225)
+ORANGE = (255, 135, 0)
 GREY = (128, 128, 128)
-TURQUOISE = (64, 224, 208)
+TURQUOISE = (0, 225, 218)
 
 
 class Node:
@@ -226,7 +226,7 @@ def get_clicked_pos(pos, rows, width):
 
 
 def main(win, width):
-    ROWS = 50
+    ROWS = 30
     grid = make_grid(ROWS, width)
 
     start = None
