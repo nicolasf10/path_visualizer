@@ -3,8 +3,9 @@ import math
 from queue import PriorityQueue
 
 WIDTH = 800
-WIN = pygame.display.set_mode((WIDTH, WIDTH))
-pygame.display.set_caption("A* Path Finding Algorithm")
+ROWS = 30
+WIN = pygame.display.set_mode((WIDTH // ROWS * ROWS, WIDTH // ROWS * ROWS))
+pygame.display.set_caption("Path Finding Algorithms")
 
 RED = (255, 36, 36)
 GREEN = (51, 225, 0)
@@ -176,9 +177,38 @@ def depth_first_algorithm(draw, grid, start, end):
             return True
 
         for neighbour in spot.neighbours:
-            if not neighbour in explored:
+            if neighbour not in explored:
                 came_from[neighbour] = spot
                 frontier.append(neighbour)
+
+        draw()
+
+    return False
+
+
+def breadth_first_algorithm(draw, grid, start, end):
+    frontier = [start]
+    explored = {start}
+    came_from = {}
+
+    while len(frontier) > 0:
+        spot = frontier.pop()
+
+        for s in explored:
+            s.make_closed()
+
+        if spot != start and spot != end:
+            spot.make_open()
+
+        if spot == end:
+            reconstruct_path(came_from, end, draw)
+            return True
+
+        for neighbour in spot.neighbours:
+            if neighbour not in explored:
+                explored.add(neighbour)
+                came_from[neighbour] = spot
+                frontier.insert(0, neighbour)
 
         draw()
 
@@ -226,7 +256,6 @@ def get_clicked_pos(pos, rows, width):
 
 
 def main(win, width):
-    ROWS = 30
     grid = make_grid(ROWS, width)
 
     start = None
@@ -280,6 +309,10 @@ def main(win, width):
                         depth_first_algorithm(
                             lambda: draw(win, grid, ROWS, width), grid, start, end
                         )
+                    elif algorithm == "bdf":
+                        breadth_first_algorithm(
+                            lambda: draw(win, grid, ROWS, width), grid, start, end
+                        )
 
                 if event.key == pygame.K_c:
                     start = None
@@ -291,6 +324,9 @@ def main(win, width):
 
                 if event.key == pygame.K_d:
                     algorithm = "dpf"
+
+                if event.key == pygame.K_b:
+                    algorithm = "bdf"
 
     pygame.quit()
 

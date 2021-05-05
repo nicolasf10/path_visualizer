@@ -12,8 +12,10 @@
 - Right click to reset the desired square
 - Press `a` to select the A\* algorithm (default)
 - Press `d` to select the Depth-First Algorithm
+- Press `b` to select the Breadth-First Algorithm
 
 ## Algorithms available:
 
 - A* search ([More information](https://en.wikipedia.org/wiki/A*\_search_algorithm))
 - Depth-First search ([More information](https://en.wikipedia.org/wiki/Depth-first_search))
+- Breadth-First search ([More information](https://en.wikipedia.org/wiki/Breadth-first_search))
