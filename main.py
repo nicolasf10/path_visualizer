@@ -299,6 +299,8 @@ def main(win, width):
                 if event.key == pygame.K_SPACE and start and end:
                     for row in grid:
                         for spot in row:
+                            if not (spot.is_start() or spot.is_start()):
+                                spot.reset()
                             spot.update_neighbors(grid)
 
                     if algorithm == "a*":
